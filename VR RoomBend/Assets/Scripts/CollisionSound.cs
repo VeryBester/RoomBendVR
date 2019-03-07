@@ -7,31 +7,36 @@ namespace Assets.Scripts
     public class CollisionSound : MonoBehaviour
     {
 
+        private bool firstHit = false;
         private void OnCollisionEnter(Collision other) {
             /*
             Will use to implement material interaction/pitch
              */
+            if(firstHit){
+                GameObject hitObject = other.gameObject;
+                ScriptMaterial otherMat = hitObject.GetComponent<ScriptMaterial>();
+                if(hitObject.tag == "Reset"){
+                    //Do reset
+                }
+                else if(otherMat != null){
+                    Debug.Log(otherMat.name);
+                
+                }
+                
+                // Make else to reset if
+                AudioSource audioSource = this.gameObject.GetComponent<AudioSource>(); 
+                audioSource.clip = this.gameObject.GetComponent<ScriptMaterial>().sound;
+                if(audioSource != null){
+                    Debug.Log("Playing");
+                    Debug.Log(this.gameObject.name);
 
-            GameObject hitObject = other.gameObject;
-            ScriptMaterial otherMat = hitObject.GetComponent<ScriptMaterial>();
-            if(hitObject.tag == "Reset"){
-
-            }
-            else if(otherMat != null){
-                Debug.Log(otherMat.name);
-            
-            }
-
-            AudioSource audioSource = this.gameObject.GetComponent<AudioSource>(); 
-            audioSource.clip = this.gameObject.GetComponent<ScriptMaterial>().sound;
-            if(audioSource != null){
-                audioSource.Play(0);
+                    audioSource.Play(0);
+                }   
             }
         }
 
-        // Test combo   N + N = N, N + H = H, N + S = S, S + S = S, S + H = S, H + H = H
-        private AudioClip getClip(ScriptMaterial other){
-            return null;
+        private void OnCollisionExit(Collision other) {
+            firstHit = true;
         }
 
     }    
