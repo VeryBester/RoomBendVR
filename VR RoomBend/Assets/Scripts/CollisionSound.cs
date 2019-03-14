@@ -6,8 +6,18 @@ namespace Assets.Scripts
 {
     public class CollisionSound : MonoBehaviour
     {
-
+        private MasterAudioSource control;
         private bool firstHit = false;
+        private void Start() {
+            GameObject temp = GameObject.FindWithTag("MasterAudio");
+            control = temp.GetComponent<MasterAudioSource>();
+            if(control == null){
+                Debug.Log("Not working");
+            }
+            else{
+                Debug.Log("Working");
+            }
+        }
         private void OnCollisionEnter(Collision other) {
             /*
             Will use to implement material interaction/pitch
@@ -15,13 +25,12 @@ namespace Assets.Scripts
             if(firstHit){
                 GameObject hitObject = other.gameObject;
                 ScriptMaterial otherMat = hitObject.GetComponent<ScriptMaterial>();
-                if(hitObject.tag == "Reset"){
+                ScriptMaterial thisMat = this.GetComponent<ScriptMaterial>();
+                if(hitObject.tag != "Reset" && otherMat != null){
                     //Do reset
+                    control.makeChange(thisMat.soundName, true);
                 }
-                else if(otherMat != null){
-                    Debug.Log(otherMat.name);
-                
-                }
+
                 
                 // Make else to reset if
                 AudioSource audioSource = this.gameObject.GetComponent<AudioSource>(); 

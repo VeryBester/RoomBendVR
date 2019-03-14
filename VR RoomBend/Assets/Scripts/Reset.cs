@@ -7,7 +7,7 @@ namespace Assets.Scripts
     public class Reset : MonoBehaviour
     {
         // Start is called before the first frame update
-        public GameObject masterAudio;
+        public MasterAudioSource masterAudio;
         private void OnCollisionEnter(Collision other) {
             Debug.Log("Hitting");
             GameObject hitObject = other.gameObject;
@@ -17,6 +17,7 @@ namespace Assets.Scripts
                 //TODO: Send sound name to master audio
                 //      Set otherMat's first to false;
                 spawner = otherMat.spawn;
+                masterAudio.makeChange(otherMat.soundName, false);
             }
             if(spawner != null){
                 hitObject.transform.position = spawner.transform.position;
