@@ -16,7 +16,7 @@ public class MasterAudioSource : MonoBehaviour
     //public List<AudioSource> sources = new List<AudioSource>();
     //public List<string> names = new List<string>();
     Dictionary<string, AudioBoolPair> controller = new Dictionary<string, AudioBoolPair>();
-    void Start()
+    void Awake()
     {   
         // Sets the clips and starts/loops them
         // Initial Volume is 0
