@@ -8,15 +8,9 @@ namespace Assets.Scripts
     {
         private MasterAudioSource control;
         private bool firstHit = false;
-        private void Start() {
+        private void Awake() {
             GameObject temp = GameObject.FindWithTag("MasterAudio");
             control = temp.GetComponent<MasterAudioSource>();
-            if(control == null){
-                Debug.Log("Not working");
-            }
-            else{
-                Debug.Log("Working");
-            }
         }
         private void OnCollisionEnter(Collision other) {
             /*
