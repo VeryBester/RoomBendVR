@@ -42,6 +42,10 @@ namespace Assets.Scripts
             firstHit = true;
         }
 
+        public void resetFirst(){
+            firstHit = false;
+        }
+
     }    
 }
 
