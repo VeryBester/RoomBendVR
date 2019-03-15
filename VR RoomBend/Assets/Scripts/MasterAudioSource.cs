@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MasterAudioSource : MonoBehaviour
 {
+    public ChalkboardManager chalkboard;
+
     class AudioBoolPair{
         public AudioBoolPair(AudioSource a){
             audioSource = a;
@@ -29,6 +32,9 @@ public class MasterAudioSource : MonoBehaviour
             AudioBoolPair pair = new AudioBoolPair(audio);
             controller.Add(name, pair);
         }
+
+        chalkboard.SetTotalSounds(controller.Count);
+        chalkboard.UpdateGameMessage();
     }
 
     // Update is called once per frame
@@ -37,8 +43,15 @@ public class MasterAudioSource : MonoBehaviour
         if(change){
             
             curr.audioSource.volume = 1f;
+
+            int count = controller.Count(kv => kv.Value.isOn);
+
+            chalkboard.SetSoundsLocated(count);
+            chalkboard.UpdateGameMessage();
+
         }
-        else{
+        else
+        {
             curr.audioSource.volume = 0f;
         }
         curr.isOn = change;
