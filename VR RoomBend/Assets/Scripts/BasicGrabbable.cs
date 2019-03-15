@@ -128,7 +128,6 @@ namespace HTC.UnityPlugin.Vive
         protected override void Awake()
         {
             base.Awake();
-            gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
             MaterialChanger.SetAllChildrenHeighlightButton(gameObject, m_grabButton);
 
@@ -157,7 +156,6 @@ namespace HTC.UnityPlugin.Vive
 
         public virtual void OnColliderEventDragStart(ColliderButtonEventData eventData)
         {
-            gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 
             if (eventData.button != m_grabButton) { return; }
 
