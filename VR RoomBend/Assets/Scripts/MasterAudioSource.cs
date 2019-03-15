@@ -46,8 +46,14 @@ public class MasterAudioSource : MonoBehaviour
 
             int count = controller.Count(kv => kv.Value.isOn);
 
-            chalkboard.SetSoundsLocated(count);
-            chalkboard.UpdateGameMessage();
+            if(count == controller.Count){
+                chalkboard.ShowCustomMessage("\n\nYou WIN!!", "\n\nThank you\n\n for playing.");
+            }
+            else{
+                chalkboard.SetSoundsLocated(count);
+                chalkboard.UpdateGameMessage();
+            }
+            
 
         }
         else
@@ -57,6 +63,5 @@ public class MasterAudioSource : MonoBehaviour
         curr.isOn = change;
     }
 
-    //TODO : find way to store/get what objects are suppose to be playing in game
 
 }
