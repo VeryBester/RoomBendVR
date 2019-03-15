@@ -18,10 +18,9 @@ namespace Assets.Scripts
              */
             if(firstHit){
                 GameObject hitObject = other.gameObject;
-                ScriptMaterial otherMat = hitObject.GetComponent<ScriptMaterial>();
                 ScriptMaterial thisMat = this.GetComponent<ScriptMaterial>();
-                if(hitObject.tag != "Reset" && otherMat != null){
-                    //Do reset
+                if(hitObject.tag != "Reset" && thisMat != null){
+                    Debug.Log(thisMat.soundName);
                     control.makeChange(thisMat.soundName, true);
                 }
 
