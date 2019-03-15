@@ -29,8 +29,8 @@ namespace Assets.Scripts
                 AudioSource audioSource = this.gameObject.GetComponent<AudioSource>(); 
                 audioSource.clip = this.gameObject.GetComponent<ScriptMaterial>().sound;
                 if(audioSource != null){
-                    Debug.Log("Playing");
-                    Debug.Log(this.gameObject.name);
+                    //Debug.Log("Playing");
+                    //Debug.Log(this.gameObject.name);
 
                     audioSource.Play(0);
                 }   
