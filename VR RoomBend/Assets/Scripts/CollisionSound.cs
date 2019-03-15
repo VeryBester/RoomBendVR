@@ -20,7 +20,7 @@ namespace Assets.Scripts
                 GameObject hitObject = other.gameObject;
                 ScriptMaterial thisMat = this.GetComponent<ScriptMaterial>();
                 if(hitObject.tag != "Reset" && thisMat != null){
-                    Debug.Log(thisMat.soundName);
+                    //Debug.Log(thisMat.soundName);
                     control.makeChange(thisMat.soundName, true);
                 }
 

@@ -19,7 +19,7 @@ public class ShatterManager : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-       Debug.Log("Collider Tag: "+other.collider.tag);
+       //Debug.Log("Collider Tag: "+other.collider.tag);
         if(other.collider.tag == "Floor")
         {
             shatterObject.SetActive(true);

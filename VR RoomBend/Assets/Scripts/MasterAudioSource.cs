@@ -6,6 +6,7 @@ using UnityEngine;
 public class MasterAudioSource : MonoBehaviour
 {
     public ChalkboardManager chalkboard;
+    public AudioSource win;
 
     class AudioBoolPair{
         public AudioBoolPair(AudioSource a){
@@ -15,9 +16,7 @@ public class MasterAudioSource : MonoBehaviour
         public AudioSource audioSource;
         public bool isOn;
     }
-    
-    //public List<AudioSource> sources = new List<AudioSource>();
-    //public List<string> names = new List<string>();
+    private bool hasWon;
     Dictionary<string, AudioBoolPair> controller = new Dictionary<string, AudioBoolPair>();
     void Awake()
     {   
@@ -32,7 +31,7 @@ public class MasterAudioSource : MonoBehaviour
             AudioBoolPair pair = new AudioBoolPair(audio);
             controller.Add(name, pair);
         }
-
+        hasWon = false;
         chalkboard.SetTotalSounds(controller.Count);
         chalkboard.UpdateGameMessage();
     }
@@ -48,6 +47,10 @@ public class MasterAudioSource : MonoBehaviour
 
             if(count == controller.Count){
                 chalkboard.ShowCustomMessage("\n\nYou WIN!!", "\n\nThank you\n\n for playing.");
+                if(!hasWon){
+                    win.Play(0);
+                    hasWon = true;
+                }
             }
             else{
                 chalkboard.SetSoundsLocated(count);

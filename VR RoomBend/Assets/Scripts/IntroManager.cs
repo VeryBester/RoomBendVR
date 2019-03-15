@@ -7,20 +7,23 @@ using UnityEngine.Video;
 public class IntroManager : MonoBehaviour
 {
     public VideoPlayer videoPlayer;
+    public VideoClip clip;
     // Start is called before the first frame update
+    double length;
+    float timepass;
     void Start()
     {
-        
+        length = clip.length;
+        timepass = 0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        videoPlayer.loopPointReached += EndReached;
-    }
-
-    void EndReached(VideoPlayer vp)
-    {
-        SceneManager.LoadScene("Scenes/Main", LoadSceneMode.Single);
+        timepass += Time.deltaTime;
+        if(timepass > length){
+            Debug.Log("working");
+            SceneManager.LoadScene("Main", LoadSceneMode.Single);    
+        }
     }
 }
